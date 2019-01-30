@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>html页面转换为image</title>
+  <style>
+    .box {
+      border: 1px solid yellowgreen;
+      padding: 10px;
+      float: left;
+    }
+    .box1 {
+      border: 1px solid yellowgreen;
+      padding: 10px;
+      height: 440px;
+      width: 340px;
+      margin-left: 80px;
+      float: left;
+    }
+    .red {
+      background: red;
+      width: 300px;
+      height: 100px;
+      margin: 10px 0;
+    }
+    .blue {
+      background: blue;
+      width: 300px;
+      height: 100px;
+      margin: 10px 0;
+    }
+  </style>
+  <script src="../lib/html2canvas.min.js"></script>
+</head>
+<script>
+  function change() {
+    html2canvas(document.querySelector(".box")).then(canvas => {
+      document.body.appendChild(canvas);
+      canvas.style.display = 'none';
+      let base641 = canvas.toDataURL('image/jpeg');
+      document.querySelector(".imgbox").src = base641;
+    });
+  }
+</script>
+<body>
+  <div class="box">
+      <div class="red">aaa</div>
+      <div class="blue">bbb</div>
+      <div class="red">nnn</div>
+      <div class="blue">ccc</div>
+  </div>
+  <div class="box1">
+    <img src="" alt="htmlImg" class="imgbox" width="300">
+  </div>
+  <div><button onclick="change()">转换</button></div>
+</body>
+</html>
